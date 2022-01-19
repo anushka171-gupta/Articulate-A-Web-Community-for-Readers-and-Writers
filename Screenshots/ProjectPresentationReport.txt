@@ -1,0 +1,25 @@
+
+1. Title
+2. Introduction: With the development of the web, it has become easier for people to connect with others and share their ideas and creativity. Various online platforms have emerged providing them with an opportunity to connect with people all over the globe and share their work at no cost. 
+
+Gone are the days when the possibility of publishing and promoting your stories or poems was a herculean task. With the provision of free publishing platforms on the web, writers can come out of the shadows to showcase their work more openly and with minimal constraints.
+
+
+3. Objective: The main aim of this project is to provide an online platform for writers to connect with their audience easily and share their work. This project will provide them tools to post their stories in rich text format and update as well as delete them according to their needs. Readers can choose to view stories according to the genre or the writer of their choice as well.
+
+
+
+
+4. Tools and hardware, software
+5. Proposed Methodology
+6. References
+
+Report
+1. Title
+2. Abstract
+3. Introduction
+4. Objective
+5. Tools and frameworks
+6. Methodology
+7. Future Scope
+8. References

@@ -1,0 +1,17 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Articulate</title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles0.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles1.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=WindSong|Kristi|Reanie+Beanie|Meddon|Caudex|Nothing+You+Could+Do|Zen+Antique+Soft|Noto+Serif+Display|Dancing+Script|Cinzel|Parisienne|Sacramento|Grey+Qo|Tangerine|Gentium+Book+Basic|Ephesis|Allura|Alex+Brush|Cherish|Italianno|Mrs+Saint+Delafield|Allison|Mr+De+Haviland|Monsieur+La+Doulaise|Megrim|Rouge+Script|Over+the+Rainbow|Clicker+Script|Stalemate|IM+Fell+DW+Pica+SC|IM+Fell+French+Canon+SC|Meie+Script|Ruthie|Beth+Allen|Elseie+Swash+Caps|">
+    <script src="{% static 'js/main.js' %}"> </script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <body onload="typeWriter()">
+        {% block body %} 
+        {% endblock %}
+    </body>
+</html>

@@ -1,0 +1,41 @@
+{% extends 'Articulate/layout0.html' %} 
+
+{% block body %}  
+<div class="background">
+
+<h1 id="title"></h1>
+
+<a href="{% url 'home' %}"><button id="explore">Explore</button></a>
+
+
+
+<!--
+    <centre><h1>Articulate</h1></centre>
+    
+    <div class="nav">
+        <div class="the">Articulate</div>
+        
+        <div class="right_nav">
+            <a href="#explore"><div class="header_elements">Explore</div></a>
+            <div class="header_elements"><a href="#signin">Sign In</a></div>
+            <div class="header_elements"><a href="#register">Register</a></div>
+        </div>
+    
+    </div>
+    -->
+</div>
+
+<input type="hidden" id="csrf" value="{{ csrf_token }}">
+
+<!--  
+    onclick= "login()"
+    
+    {% if request.user.is_authenticated %}
+
+    button(logout)
+    {% else %}
+    {% endif %}
+
+-->
+
+{% endblock %}

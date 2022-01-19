@@ -1,0 +1,31 @@
+{% extends 'Articulate/layout1.html' %}
+
+{% block body %} 
+<div class="my-stories m-5" >
+<h2 class="text-center mt-5" style="font-family: 'Times New Roman', Times, serif; font-weight: bold">My Stories</h1>
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th >Story Title</th>
+            <th>Created At</th>
+            <th colspan="2">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for story in story_objs %}
+        <tr>
+            <th>{{ forloop.counter }}</th>
+            <td><a href="{% url 'story_detail' story.slug %}">{{ story.title }}</a></td>
+            <td>{{ story.created_at }}</td>
+            <td><a href="{% url 'update_story' story.slug %}" class="btn btn-success">Update</a></td>
+            <td><a href="{% url 'delete_story' story.id %}" class="btn btn-danger">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}

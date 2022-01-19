@@ -1,0 +1,81 @@
+{% extends 'Articulate/layout1.html' %}
+{% load static %}
+
+{% block body %} 
+
+<table class="table-responsive profile">
+    {% for profile in profiles %}
+<tr>
+<td>
+{% if profile.image %}
+<img src="{% static profile.image %}" class="profile_image mt-5">
+{% else %} 
+<img src="/static/profile/default_image.png" class="profile_image mt-5">
+{% endif %}
+</td>
+<td class="profile_td">
+    <h1>{{ user.first_name }} {{user.last_name}}</h1>
+    {% if profile.about_me %}<p> {{ profile.about_me }}</p> {% endif %}
+    
+    
+<div>
+    {% if user.username == request.user.username %} 
+    
+    <p><a href="{% url 'edit_profile' %}">Edit Profile</p></a> 
+    {% endif %}
+    
+</div>
+
+</td>
+</tr>
+{% endfor %}
+</table>
+
+<!-- <h3 class="text-center my-5">My Stories</h3> -->
+<div class="m-5">
+<table class="table my-5 p-5">
+    <!-- <thead>
+        <tr><th colspan="4">Stories</th></tr>
+    </thead> -->
+    <thead>
+        <tr>
+            <th>#</th>
+            <th colspan="2">Story</th>
+            <th>Created At</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for story in story_objs %}
+
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td class="cover">
+                <a href="{% url 'story_detail' story.slug%}">
+                    <img src="{% static story.image %}" class="cover-image ">
+                </a>
+            </td>
+            <td class="story-desc pl-4 mx-5">
+                
+                <h5><a class="text-dark" href="{% url 'story_detail' story.slug %}" >{{ story.title }}</a></h5>
+                
+                <!-- <p>{{ story.content|safe }}</p> -->
+            </td>
+            <td>{{ story.created_at }}</td>
+        </tr>
+
+
+
+<!-- 
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+
+            <td><a href="{% url 'story_detail' story.slug%}">{{ story.title }}</a></td>
+            <td>{{ story.created_at }}</td>
+        </tr> -->
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+<br><br>
+{% endblock %}

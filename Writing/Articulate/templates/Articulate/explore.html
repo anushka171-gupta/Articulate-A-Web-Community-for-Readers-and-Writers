@@ -1,0 +1,70 @@
+
+{% extends 'Articulate/layout1.html' %} 
+{% load static %}
+
+{% block body %}
+
+
+
+
+<div class="mt-5">  
+
+<div style="padding-left: 2%">
+
+{% for genre, story in genres.items %} 
+
+{% if story|length > 0 %}
+
+<button data-genre="{{forloop.counter}}" class="genres btn btn-outline-dark m-2" onclick="genre()">{{ genre.genre }}</button>
+{% endif %}
+
+{% endfor %}
+</div>
+
+{% for key, stories in genres.items %}
+
+
+
+    {% if stories|length > 0 %}
+        <div id="{{forloop.counter}}">
+
+
+            <br><br><br><br>
+        <h1 class="genre_name text-center">{{ key.genre }}</h1>
+     
+        <table class="mt-5 mx-5 mr-5">
+            {% for story in stories %}  
+
+                <tr>
+                    <td class="cover">
+                        <a href="{% url 'story_detail' story.slug %}">
+                            <img src="{% static story.image %}" class="cover-image ">
+                        </a>
+                    </td>
+                    <td class="story-desc pl-4 mx-5">
+                        
+                        <h5><a class="text-dark" href="{% url 'story_detail' story.slug %}" >{{ story.title }}</a></h5>
+                        <div><a href="{% url 'profile' story.user.username %}">{{ story.user.username }}</a></div>
+                        <p><i>{{ story.created_at }}</i></p>
+                        <!-- <p>{{ story.content|safe }}</p> -->
+                        <p><a href="{% url 'story_detail' story.slug%}">Read</a></p>
+                        </div>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+        </table>  
+
+        <hr>
+    </div>
+    {% endif %}
+
+{% endfor %}
+
+</div>
+<br><br>    
+
+{% endblock %}
+
+

@@ -1,0 +1,20 @@
+{% extends 'Articulate/layout1.html' %} 
+
+
+{% block body %} 
+<h2 class="text-dark text-center m-5" style="font-family: 'Times New Roman', Times, serif;">Edit Profile</h2>
+<form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="m-5">
+    <label for="profile_image" >Profile Image</label>
+    <input type="file" id="profile_image" name="image" class="form-control" class="px-5" style="height: 5%">
+</div>
+
+<div class="m-5">
+    <label for="about_me" >About Me</label>
+    <input type="text" placeholder="About Me" id="about_me" name="about_me" style="width: 100%">
+    <input class="btn btn-primary" type="submit" value="Save Profile">
+</div>
+</form>
+
+{% endblock %}

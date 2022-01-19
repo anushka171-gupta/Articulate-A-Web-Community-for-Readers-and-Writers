@@ -1,0 +1,16 @@
+{% extends 'Articulate/layout1.html' %} 
+{% load static %} 
+
+
+{% block body %} 
+<div class="text-center m-5 p-5">
+<h1 style="font-family: 'Times New Roman', Times, serif;">{{ story.title }} </h1>
+<p>— <a href="{% url 'profile' story.user.username %}" class="text-muted">{{ story.user }}</a></p>
+<p class="font-italic text-muted">{{ story.created_at }}</p>
+<img src="{% static story.image %}" class="img-fluid" width = 100%>
+
+<div class="text-justify text-center m-5">
+{{ story.content|safe }}
+</div>
+</div>
+{% endblock %}

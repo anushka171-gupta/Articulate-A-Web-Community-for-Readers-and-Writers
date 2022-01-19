@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Articulate</title>
+    </head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles1.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=WindSong|Kristi|Reanie+Beanie|Meddon|Caudex|Nothing+You+Could+Do|Zen+Antique+Soft|Noto+Serif+Display|Dancing+Script|Cinzel|Parisienne|Sacramento|Grey+Qo|Tangerine|Gentium+Book+Basic|Ephesis|Allura|Alex+Brush|Cherish|Italianno|Mrs+Saint+Delafield|Allison|Mr+De+Haviland|Monsieur+La+Doulaise|Megrim|Rouge+Script|Over+the+Rainbow|Clicker+Script|Stalemate|IM+Fell+DW+Pica+SC|IM+Fell+French+Canon+SC|Meie+Script|Ruthie|Beth+Allen|Elseie+Swash+Caps|"> -->
+    
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+    <script src="{% static 'js/main.js' %}"> </script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <!-- <script src="{% static 'js/interface.js' %}"></script> -->
+
+    <body>
+                
+        <div class="header fixed-top">
+            <div class="title"><a href="{% url 'home' %}" style="text-decoration: none; color: black">Articulate.</a></div>
+
+            {% if request.user.is_authenticated %}
+            <div class="dropdown" >
+                <button class="my-drop-btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div class="nav-items">{{ user.username }}</div></button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a>
+                    <a class="dropdown-item" href="{% url 'see_story' %}">My Stories</a>
+                    <a class="dropdown-item" href="{% url 'write' %}">Write</a>
+                    <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+
+            </div>
+            <!-- <a href="{% url 'logout' %}"><div class="header_elements">Logout</div></a> -->
+            {% else %}
+            <a href="{% url 'register' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Register</div></button></a>
+            <a href="{% url 'login' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Login</div></button></a>
+            {% endif %}
+            <a href="{% url 'explore' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Explore</div></button></a>
+            <a href="{% url 'home' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Home</div></button></a>
+        </div>
+        <br><br><br>
+        {% block body %} 
+        {% endblock %}
+
+        <script>
+            
+function genre() {
+        Array.from(document.getElementsByClassName('genres')).forEach((button) => {
+            button.onclick = function() {
+
+                const genre = document.getElementById(button.dataset.genre);
+                console.log(genre);
+                genre.scrollIntoView();
+            }
+        });
+    }
+
+document.querySelectorAll('.genres').onclick = genre();
+        </script>
+    </body>
+</html>

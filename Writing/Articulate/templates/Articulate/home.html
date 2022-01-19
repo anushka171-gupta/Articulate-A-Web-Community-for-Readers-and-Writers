@@ -1,0 +1,134 @@
+
+{% extends 'Articulate/layout2.html' %} 
+{% load static %}
+
+{% block body %}
+
+
+
+
+
+
+
+
+<div class="bgimg-1">
+    <div class="caption-title">
+    <span class="border">Articulate</span>
+    </div>
+    <div class="caption">
+      <span class="second-caption" >WHAT'S YOUR STORY?</span>
+      </div>
+  </div>
+
+ 
+  
+<div class="head">
+
+
+
+  <div class="header-home header">
+    <div class="title"><a href="{% url 'home' %}" style="text-decoration: none; color: black">Articulate.</a></div>
+  
+    {% if request.user.is_authenticated %}
+    <div class="dropdown" >
+        <button class="my-drop-btn dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div class="nav-items">{{ user.username }}</div></button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a>
+            <a class="dropdown-item" href="{% url 'see_story' %}">My Stories</a>
+            <a class="dropdown-item" href="{% url 'write' %}">Write</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+        </div>
+  
+    </div>
+    <!-- <a href="{% url 'logout' %}"><div class="header_elements">Logout</div></a> -->
+    {% else %}
+    <a href="{% url 'register' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Register</div></button></a>
+    <a href="{% url 'login' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Login</div></button></a>
+    {% endif %}
+    <a href="{% url 'explore' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Explore</div></button></a>
+    <a href="{% url 'home' %}"><button class="btn header_elements my-drop-btn"><div class="nav-items">Home</div></button></a>
+  </div>
+  </div>
+  <br><br><br><br>
+  <div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
+
+    <h3 style="text-align:center;">About Us</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+  </div>
+
+  <div class="bgimg-1">
+    <div class="caption">
+    <span class="border">JOIN THE COMMUNITY!</span>
+    </div>
+  </div>
+
+  {% if stories %}
+  <h2 class="text-center mt-5" style="font-family: 'Times New Roman', Times, serif">Top Stories</h2>
+  <hr style="width: 90%">
+<table class="m-5">
+
+    {% for story in stories %} 
+    <tr>
+        <td class="cover">
+            <a href="{% url 'story_detail' story.slug%}">
+                <img src="{% static story.image %}" class="cover-image ">
+            </a>
+        </td>
+        <td class="story-desc pl-4 mx-5">
+            
+            <h5><a class="text-dark" href="{% url 'story_detail' story.slug %}">{{ story.title }}</a></h5>
+            <div><a href="{% url 'profile' story.user.username %}">{{ story.user.username }}</a></div>
+            <p><i>{{ story.created_at }}</i></p>
+            <!-- <p>{{ story.content|safe }}</p> -->
+            <p><a href="{% url 'story_detail' story.slug%}">Read More</a></p>
+            </div>
+        </td>
+    </tr>
+    
+
+    {% endfor %}
+</table>
+{% endif %}   
+
+<div class="bgimg-1">
+  <div class="caption">
+  <span class="border">MEET NEW WRITERS!</span>
+  </div>
+</div>
+
+{% if profiles %}
+<h2 class="text-center mt-5" style="font-family: 'Times New Roman', Times, serif">Top Writers</h2>
+<hr style="width: 90%">
+<table class="m-5 pb-5">
+  {% for profile in profiles %}  
+
+  <tr>
+    <td>
+      <a href="{% url 'profile' profile.user %}">
+    {% if profile.image %}
+    <img src="{% static profile.image %}" class="profile_image mt-5" style="width: 100px; height: 100px">
+    {% else %} 
+    <img src="/static/profile/default_image.png" class="profile_image mt-5" style="width: 100px; height: 100px">
+    {% endif %}
+  </a>
+    </td>
+    <td class="profile_td">
+        <h5><a href="{% url 'profile' profile.user %}" class="text-dark">{{ profile.user.first_name }} {{profile.user.last_name}}</a></h5>
+        {% if profile.about_me %}<p> {{ profile.about_me }}</p> {% endif %}
+      
+    </td>
+    </tr>
+
+
+
+  {% endfor %}
+
+</table>
+{% endif %}
+<br><br>
+
+{% endblock %}
